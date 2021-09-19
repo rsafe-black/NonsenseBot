@@ -1,0 +1,9 @@
+{
+	"allFiles": [ 
+	{"filename": "polygons.webm"},
+	{"filename": "careless.webm"},
+	{"filename": "wingcat.webm"}
+	],
+	
+    "secret_token":"It'd go here."
+}
