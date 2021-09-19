@@ -12,8 +12,14 @@ with open("configMe.json") as json_cfg:
     cfg = json.load(json_cfg)
 # Load configuration file items
 secret_token = cfg['secret_token']
+
 # Loading of nonsense-files
 allFiles = [x["filename"] for x in cfg['allFiles']]
+httpString = cfg['site_address']
+allowedNonsenseChannels = [x["channel"] for x in cfg['allowed_nonsense_channels']]
+# Load Fate-Config
+fate = [x["emote"] for x in cfg['fate_dice']]
+
 
 def roller(n):
     return random.randint(0,n)
@@ -32,25 +38,23 @@ async def roll(ctx, arg="FfffX"):
     x = "F"
     # we need to set these args to garbage to make sure an assignment was made.
     try: 
-        x = int(arg) #if this fails, they haven't given us a proper int.
+        x = int(arg) #if this fails, they haven't given us a proper int. I should write a catch statement to reduce the impact on logs, right now every time it's 8 lines or more per failure.
     except:
         await ctx.channel.send("That's not a valid. Try `roll x` for x dice.")
     sendString = "" #init the string
     fateNum = rollHandler(x);
-    fate = ["<:dieplus:869461525071544371>","<:dieblank:869461482277060668>","<:dieminus:869461560236593152>"] #these values hardcoded for now, maybe offload to config later?
+ #these values hardcoded for now, maybe offload to config later?
     for index, elt in enumerate(fateNum):
         sendString += fate[fateNum[index]]   #Append the roll to the message
         #Remember here, we roll 0-2 instead of 1-3 because of this! 
     await ctx.channel.send(sendString) # send the finished string
     
 @client.command()
-@commands.cooldown(1, 3600, commands.BucketType.user) #once every few hours per user
+@commands.cooldown(1, 5, commands.BucketType.user) #once every few hours per user
 async def nonsense(ctx):
-    v = len(allFiles)
-    s = random.randint(0, v)  
-    httpString = "http://some.random.host/nonsense/"
-    if str(ctx.channel.id) == "99999999999999999": #We should set this to be a config option
-    	await ctx.channel.send(f'{httpString}{allFiles[s]}')
+    choice = random.choice(allFiles)
+    if str(ctx.channel.id) in allowedNonsenseChannels: #does it match any of our channels?
+    	await ctx.channel.send(f'{httpString}{choice}')
     return
 
 

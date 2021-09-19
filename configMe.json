@@ -1,9 +1,18 @@
 {
 	"allFiles": [ 
 	{"filename": "polygons.webm"},
-	{"filename": "careless.webm"},
+	{"filename": "careless.png"},
 	{"filename": "wingcat.webm"}
 	],
-	
+	"site_address":"http://www.example.com/nonsense/",
+	"allowed_nonsense_channels": [
+	{"channel": "999999999999991111"},
+	{"channel": "999999999999991112"}
+	],
+	"fate_dice": [
+	{"emote": "<:dieplus:869461525071544371>"},
+	{"emote": "<:dieblank:869461482277060668>"},
+	{"emote": "<:dieminus:869461560236593152>"}
+	],
     "secret_token":"It'd go here."
 }
