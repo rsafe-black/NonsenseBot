@@ -16,7 +16,7 @@ Specifically, FATE dice. It rolls them and by default, outputs an emoji for each
 
 ## Nonsense
 
-This was really the point of making our own bot: Once every four hours, you can simply type !nonsense to be given a random link to a file from the list. This quickly descended into people using the bot as a very strange oracle. The file list is around 300 different random videos at the time of initial upload.
+This was really the point of making our own bot: Once every four hours, you can simply type `!nonsense` to be given a random link to a file from the list. The file list is around 300 different random videos at the time of initial upload.
 
 ## Is that all?
 
